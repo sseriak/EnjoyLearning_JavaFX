@@ -1,7 +1,6 @@
 package com.example.enjoylearning;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -10,13 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloController {
+public class SceneController {
     private Stage stage;
     private Scene scene;
 
 
     public void switchToSecondScene(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("second-scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EnjoyLearningApplication.class.getResource("second-scene.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Second scene!");
@@ -24,11 +23,11 @@ public class HelloController {
         stage.show();
     }
 
-    public void switchToHelloScene(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+    public void switchToMainScene(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(EnjoyLearningApplication.class.getResource("main-scene.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello scene!");
+        stage.setTitle("Enjoy learning!");
         stage.setScene(scene);
         stage.show();
     }
