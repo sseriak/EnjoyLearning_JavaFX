@@ -1,6 +1,7 @@
 package com.example.enjoylearning;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class AddCardSceneController {
     private Model model;
@@ -11,7 +12,15 @@ public class AddCardSceneController {
     @FXML
     private void goToMain() {
         model.setCurrentView(Model.View.MAIN);
-
-        System.out.println("It's add card scene");
     }
+
+    @FXML
+    TextField inputTopic;
+    @FXML
+    TextField inputWord;
+    @FXML
+    TextField inputTranslation;
+    @FXML
+    TextField inputTag;
+
 }

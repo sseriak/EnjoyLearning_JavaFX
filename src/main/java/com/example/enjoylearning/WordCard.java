@@ -3,7 +3,9 @@ package com.example.enjoylearning;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class WordCard {
+import java.io.Serializable;
+
+public class WordCard implements Serializable {
     private String word;
     private String translation;
     private String topic;

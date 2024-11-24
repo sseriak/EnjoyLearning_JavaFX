@@ -16,6 +16,7 @@ public class EnjoyLearningApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        CardManager.loadCards();
         Model model = new Model();
 
         FXMLLoader loaderMain = new FXMLLoader(EnjoyLearningApplication.class.getResource("main-scene.fxml"));
@@ -51,6 +52,14 @@ public class EnjoyLearningApplication extends Application {
 
         stage.setTitle("Enjoy learning!");
         stage.setScene(scene);
+
+// prevent default exit, save cards before and then close window
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            CardManager.saveCards();
+            stage.close();
+        });
+
         stage.show();
     }
 
