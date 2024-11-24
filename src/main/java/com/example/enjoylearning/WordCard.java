@@ -11,28 +11,13 @@ public class WordCard implements Serializable {
     private String topic;
     private String tag;
     private int currentProficiencyScore;
-    public enum Side { BACK, FRONT }
-
-    private final ObjectProperty<Side> currentCardSide = new SimpleObjectProperty<Side>(Side.FRONT);
+    private String currentSide = "FRONT";
 
     public WordCard(String word, String translation, String topic, String tag) {
         this.word = word;
         this.translation = translation;
         this.topic = topic;
         this.tag = tag;
-    }
-
-//    current side property control
-    public ObjectProperty<Side> getCurrentCardSideProperty() {
-        return currentCardSide;
-    }
-
-    public Side getCurrentCardSide() {
-        return currentCardSide.get();
-    }
-
-    public void setCurrentCardSide(Side currentSide) {
-        this.currentCardSide.set(currentSide);
     }
 
     //    current proficiency score control
@@ -44,11 +29,23 @@ public class WordCard implements Serializable {
         this.currentProficiencyScore = currentProficiencyScore;
     }
 
+    public String getWord() {
+        return this.word;
+    }
+
+    public String getTranslation() {
+        return this.translation;
+    }
+
+    public void setCurrentCardSide(String side) {
+        this.currentSide = side;
+    }
+
     public void flipByClick() {
-        if (getCurrentCardSide() == Side.FRONT) {
-            setCurrentCardSide(Side.BACK);
+        if (currentSide.equals("FRONT")) {
+            setCurrentCardSide("BACK");
         } else {
-            setCurrentCardSide(Side.FRONT);
+            setCurrentCardSide("FRONT");
         }
     }
 }

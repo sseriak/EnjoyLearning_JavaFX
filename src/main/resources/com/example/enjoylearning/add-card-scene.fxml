@@ -13,7 +13,7 @@
          <HBox alignment="CENTER" prefHeight="14.0" prefWidth="600.0">
             <children>
                <Button mnemonicParsing="false" onAction="#goToMain" text="Close" />
-               <Button mnemonicParsing="false" text="Save" />
+               <Button mnemonicParsing="false" onAction="#addNewCard" text="Save" />
             </children>
          </HBox>
          <TextField fx:id="inputTopic" promptText="Topic" />
