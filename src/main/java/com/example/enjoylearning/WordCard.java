@@ -1,8 +1,5 @@
 package com.example.enjoylearning;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-
 import java.io.Serializable;
 
 public class WordCard implements Serializable {
@@ -10,8 +7,7 @@ public class WordCard implements Serializable {
     private String translation;
     private String topic;
     private String tag;
-    private int currentProficiencyScore;
-    private String currentSide = "FRONT";
+    private String currentProficiencyScore;
 
     public WordCard(String word, String translation, String topic, String tag) {
         this.word = word;
@@ -20,14 +16,26 @@ public class WordCard implements Serializable {
         this.tag = tag;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
     //    current proficiency score control
-    public int getCurrentProficiencyScore() {
+    public String getCurrentProficiencyScore() {
         return currentProficiencyScore;
     }
 
-    public void setCurrentProficiencyScore(int currentProficiencyScore) {
+    public void setCurrentProficiencyScore(String currentProficiencyScore) {
         this.currentProficiencyScore = currentProficiencyScore;
     }
+
+//    public void toggleCurrentSide() {
+//        this.isCurrentSideFront = !this.isCurrentSideFront;
+//    }
 
     public String getWord() {
         return this.word;
@@ -35,17 +43,5 @@ public class WordCard implements Serializable {
 
     public String getTranslation() {
         return this.translation;
-    }
-
-    public void setCurrentCardSide(String side) {
-        this.currentSide = side;
-    }
-
-    public void flipByClick() {
-        if (currentSide.equals("FRONT")) {
-            setCurrentCardSide("BACK");
-        } else {
-            setCurrentCardSide("FRONT");
-        }
     }
 }

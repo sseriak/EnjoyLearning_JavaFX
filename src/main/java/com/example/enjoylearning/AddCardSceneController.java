@@ -2,7 +2,6 @@ package com.example.enjoylearning;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.util.ArrayList;
 
@@ -37,11 +36,15 @@ public class AddCardSceneController {
         cardManager.saveCards();
         System.out.println("New card has been added");
         ArrayList<WordCard> cards = cardManager.getCards();
+        inputTopic.setText("");
+        inputWord.setText("");
+        inputTranslation.setText("");
+        inputTag.setText("");
 
-        for (WordCard card : cards) {
-            System.out.println(card.getWord() + " " + card.getTranslation());
-        }
-        System.out.println(cardManager.getCards());
+//        for (WordCard card : cards) {
+//            System.out.println(card.getWord() + " " + card.getTranslation());
+//        }
+//        System.out.println(cardManager.getCards());
     }
 
 }
