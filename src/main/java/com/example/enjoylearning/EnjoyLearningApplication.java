@@ -44,7 +44,7 @@ public class EnjoyLearningApplication extends Application {
         controllerSearch.setModel(model);
 
         // create scene with initial view:
-        Scene scene = new Scene(viewFromModel(model.getCurrentView()), 640, 480);
+        Scene scene = new Scene(viewFromModel(model.getCurrentView()), 640, 640);
 
         // change view when model property changes:
         model.currentViewProperty().addListener((_, _, newView) -> scene.setRoot(viewFromModel(newView)));
