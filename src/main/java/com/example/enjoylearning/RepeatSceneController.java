@@ -1,5 +1,7 @@
 package com.example.enjoylearning;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -14,20 +16,43 @@ public class RepeatSceneController {
     private Model model;
     CardManager cardManager = new CardManager();
     ArrayList<WordCard> cards = cardManager.getCards();
+    FilterManager filterManager;
     private int iteration = 1;
-    private String cardOrientation = "NORMAL";
     private WordCard currentCard;
+    private ArrayList<String> topics ;
+    private ArrayList<String> tags;
+    private ArrayList<String> scores;
+
+    public RepeatSceneController() {
+        this.filterManager = new FilterManager(cards);
+        this.topics = filterManager.getTopics();
+        this.tags = filterManager.getTags();
+        this.scores = filterManager.getScores();
+    }
+
+//    private void createChoiceBoxes() {
+//
+//    }
+
 
     public void setModel(Model model) {
         this.model = model;
     }
 
     @FXML
-    ChoiceBox categoryChoiceBox;
+    private void onTopicChoiceBoxClick() {
+        ObservableList<String> uniqueTopicsObservable = FXCollections.observableArrayList(this.topics);
+        topicChoiceBox.setItems(uniqueTopicsObservable);
+    }
+
+    @FXML
+    ChoiceBox topicChoiceBox;
     @FXML
     ChoiceBox tagChoiceBox;
     @FXML
     ChoiceBox scoreChoiceBox;
+    @FXML
+    ChoiceBox orientationChoiceBox;
     @FXML
     Button startButton;
 
@@ -62,7 +87,7 @@ public class RepeatSceneController {
         labelTranslation.setText("");
         scoreBox.setVisible(false);
 
-        if (cardOrientation.equals("NORMAL")) {
+        if (orientationChoiceBox.getValue().equals("normal")) {
             labelWord.setText(currentCard.getWord());
         } else {
             labelTranslation.setText(currentCard.getTranslation());
@@ -71,8 +96,9 @@ public class RepeatSceneController {
 
     @FXML
     private void startRepetition() {
-        categoryChoiceBox.setDisable(true);
+        topicChoiceBox.setDisable(true);
         tagChoiceBox.setDisable(true);
+        orientationChoiceBox.setDisable(true);
         scoreChoiceBox.setDisable(true);
         startButton.setDisable(true);
         renderFlipCard();
@@ -85,7 +111,7 @@ public class RepeatSceneController {
     private void clickOnCard() {
         scoreBox.setVisible(true);
 
-        if (cardOrientation.equals("NORMAL")) {
+        if (orientationChoiceBox.getValue().equals("normal")) {
             labelTranslation.setText(currentCard.getTranslation());
         } else {
             labelWord.setText(currentCard.getWord());
@@ -101,9 +127,10 @@ public class RepeatSceneController {
         cardManager.saveCards();
 
         if (iteration == cards.size()) {
-            categoryChoiceBox.setDisable(false);
+            topicChoiceBox.setDisable(false);
             tagChoiceBox.setDisable(false);
             scoreChoiceBox.setDisable(false);
+            orientationChoiceBox.setDisable(false);
             flipWordCard.setVisible(false);
             startButton.setDisable(false);
             completionText.setText("Well done! Click start to repeat words again");

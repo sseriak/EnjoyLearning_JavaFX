@@ -1,23 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
+<VBox alignment="TOP_CENTER" onMouseClicked="#onTopicChoiceBoxClick" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <HBox alignment="CENTER" prefWidth="200.0">
+      <children>
+         <Label alignment="CENTER" contentDisplay="TOP" prefWidth="120.0" text="Choose Topic:" />
+         <Label alignment="CENTER" prefWidth="120.0" text="Choose Tag:" textAlignment="CENTER" />
+         <Label alignment="CENTER" prefWidth="120.0" text="Choose Score:" textAlignment="CENTER" />
+         <Label alignment="CENTER" prefWidth="120.0" text="Choose Orientation:" textAlignment="CENTER" />
+      </children>
+      <VBox.margin>
+         <Insets bottom="5.0" />
+      </VBox.margin>
+   </HBox>
    <HBox alignment="TOP_CENTER" prefWidth="200.0">
       <children>
       
           <Button onAction="#goToMain" text="Close" />
-         <ChoiceBox fx:id="categoryChoiceBox" prefWidth="150.0" />
-         <ChoiceBox fx:id="tagChoiceBox" prefWidth="150.0" />
-         <ChoiceBox fx:id="scoreChoiceBox" prefWidth="150.0" />
+         <ChoiceBox fx:id="topicChoiceBox" prefWidth="120.0" value="all" />
+         <ChoiceBox fx:id="tagChoiceBox" prefWidth="120.0" value="all" />
+         <ChoiceBox fx:id="scoreChoiceBox" prefWidth="120.0" value="all" />
+         <ChoiceBox fx:id="orientationChoiceBox" prefWidth="120.0" value="normal">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="normal" />
+                  <String fx:value="reverse" />
+               </FXCollections>
+            </items>
+         </ChoiceBox>
+
          <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRepetition" text="Start" />
       </children>
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin>
    </HBox>
    <VBox fx:id="flipWordCard" alignment="TOP_CENTER" maxWidth="280.0" prefHeight="400.0" style="-fx-border-color: #000;" visible="false">
       <children>
