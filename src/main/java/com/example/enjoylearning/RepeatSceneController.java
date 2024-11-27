@@ -23,26 +23,25 @@ public class RepeatSceneController {
     private ArrayList<String> tags;
     private ArrayList<String> scores;
 
-    public RepeatSceneController() {
-        this.filterManager = new FilterManager(cards);
-        this.topics = filterManager.getTopics();
-        this.tags = filterManager.getTags();
-        this.scores = filterManager.getScores();
-    }
-
-//    private void createChoiceBoxes() {
-//
-//    }
-
-
     public void setModel(Model model) {
         this.model = model;
     }
 
-    @FXML
-    private void onTopicChoiceBoxClick() {
-        ObservableList<String> uniqueTopicsObservable = FXCollections.observableArrayList(this.topics);
-        topicChoiceBox.setItems(uniqueTopicsObservable);
+    public void updateChoiceBoxes() {
+        this.filterManager = new FilterManager(cards);
+        this.topics = filterManager.getTopics();
+        this.tags = filterManager.getTags();
+        this.scores = filterManager.getScores();
+
+        ObservableList<String> uniqueTopics = FXCollections.observableArrayList(this.topics);
+        topicChoiceBox.setItems(uniqueTopics);
+        topicChoiceBox.setValue("all");
+        ObservableList<String> uniqueTags = FXCollections.observableArrayList(this.tags);
+        tagChoiceBox.setItems(uniqueTags);
+        tagChoiceBox.setValue("all");
+        ObservableList<String> uniqueScores = FXCollections.observableArrayList(this.scores);
+        scoreChoiceBox.setItems(uniqueScores);
+        scoreChoiceBox.setValue("all");
     }
 
     @FXML
@@ -75,7 +74,24 @@ public class RepeatSceneController {
 
     @FXML
     private void goToMain() {
+        closeCard();
         model.setCurrentView(Model.View.MAIN);
+    }
+
+    @FXML
+    private void closeCard() {
+        topicChoiceBox.setDisable(false);
+        tagChoiceBox.setDisable(false);
+        scoreChoiceBox.setDisable(false);
+        orientationChoiceBox.setDisable(false);
+        flipWordCard.setVisible(false);
+        startButton.setDisable(false);
+
+        cardManager = new CardManager();
+        cards = cardManager.getCards();
+        updateChoiceBoxes();
+
+        iteration = 1;
     }
 
     public void renderFlipCard() {
@@ -111,6 +127,8 @@ public class RepeatSceneController {
     private void clickOnCard() {
         scoreBox.setVisible(true);
 
+        System.out.println("AHA");
+
         if (orientationChoiceBox.getValue().equals("normal")) {
             labelTranslation.setText(currentCard.getTranslation());
         } else {
@@ -127,15 +145,8 @@ public class RepeatSceneController {
         cardManager.saveCards();
 
         if (iteration == cards.size()) {
-            topicChoiceBox.setDisable(false);
-            tagChoiceBox.setDisable(false);
-            scoreChoiceBox.setDisable(false);
-            orientationChoiceBox.setDisable(false);
-            flipWordCard.setVisible(false);
-            startButton.setDisable(false);
+            closeCard();
             completionText.setText("Well done! Click start to repeat words again");
-
-            iteration = 1;
         } else {
             iteration++;
             renderFlipCard();

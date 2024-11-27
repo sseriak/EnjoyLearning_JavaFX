@@ -13,16 +13,22 @@ public class FilterManager {
         this.initialCardList = cardList;
         this.topics = this.initialCardList.stream()
                 .map(WordCard::getTopic)
+                .filter(topic -> topic != null && !topic.isEmpty())
                 .distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
+        this.topics.addFirst("all");
         this.tags = this.initialCardList.stream()
                 .map(WordCard::getTag)
+                .filter(tag -> tag != null && !tag.isEmpty())
                 .distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
+        this.tags.addFirst("all");
         this.scores = this.initialCardList.stream()
                 .map(WordCard::getCurrentProficiencyScore)
+                .filter(score -> score != null && !score.isEmpty())
                 .distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
+        this.scores.addFirst("all");
     }
 
     public ArrayList<WordCard> filterCardList(String topic, String tag, String score) {

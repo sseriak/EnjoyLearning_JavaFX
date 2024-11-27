@@ -32,6 +32,7 @@ public class EnjoyLearningApplication extends Application {
         viewRepeat = loaderRepeat.load();
         RepeatSceneController controllerRepeat = loaderRepeat.getController();
         controllerRepeat.setModel(model);
+        controllerRepeat.updateChoiceBoxes();
 
         FXMLLoader loaderPairs = new FXMLLoader(EnjoyLearningApplication.class.getResource("pairs-scene.fxml"));
         viewPairs = loaderPairs.load();

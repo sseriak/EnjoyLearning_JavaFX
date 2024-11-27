@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" onMouseClicked="#onTopicChoiceBoxClick" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
+<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -46,11 +46,16 @@
    </HBox>
    <VBox fx:id="flipWordCard" alignment="TOP_CENTER" maxWidth="280.0" prefHeight="400.0" style="-fx-border-color: #000;" visible="false">
       <children>
-         <Label fx:id="labelTopic">
-            <VBox.margin>
-               <Insets bottom="50.0" />
-            </VBox.margin>
-         </Label>
+         <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+            <children>
+               <Button fx:id="closeCardButton" mnemonicParsing="false" onAction="#closeCard" text="X">
+                  <HBox.margin>
+                     <Insets right="20.0" />
+                  </HBox.margin>
+               </Button>
+               <Label fx:id="labelTopic" />
+            </children>
+         </HBox>
          <Label fx:id="labelWord">
             <font>
                <Font size="20.0" />
