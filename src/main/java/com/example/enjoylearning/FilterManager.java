@@ -32,11 +32,11 @@ public class FilterManager {
     }
 
     public ArrayList<WordCard> filterCardList(String topic, String tag, String score) {
-        return (ArrayList<WordCard>) this.initialCardList.stream()
+        return this.initialCardList.stream()
                 .filter(card -> "all".equals(topic) || topic.equals(card.getTopic()))
                 .filter(card -> "all".equals(tag) || tag.equals(card.getTag()))
                 .filter(card -> "all".equals(score) || score.equals(card.getCurrentProficiencyScore()))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<String> getTopics() {

@@ -14,20 +14,25 @@ import java.util.ArrayList;
 
 public class RepeatSceneController {
     private Model model;
-    CardManager cardManager = new CardManager();
-    ArrayList<WordCard> cards = cardManager.getCards();
+    CardManager cardManager;
     FilterManager filterManager;
+    private ArrayList<WordCard> cards;
+    private ArrayList<WordCard> filteredCards;
     private int iteration = 1;
     private WordCard currentCard;
     private ArrayList<String> topics ;
     private ArrayList<String> tags;
     private ArrayList<String> scores;
+    private ArrayList<String> cardsToDelete = new ArrayList<>();
 
     public void setModel(Model model) {
         this.model = model;
     }
 
     public void updateChoiceBoxes() {
+        cardManager = new CardManager();
+        cards = cardManager.getCards();
+
         this.filterManager = new FilterManager(cards);
         this.topics = filterManager.getTopics();
         this.tags = filterManager.getTags();
@@ -73,6 +78,13 @@ public class RepeatSceneController {
     HBox scoreBox;
 
     @FXML
+    Button deleteButton;
+    @FXML
+    Button deleteButtonNo;
+    @FXML
+    Button deleteButtonYes;
+
+    @FXML
     private void goToMain() {
         closeCard();
         model.setCurrentView(Model.View.MAIN);
@@ -95,7 +107,7 @@ public class RepeatSceneController {
     }
 
     public void renderFlipCard() {
-        this.currentCard = cards.get(iteration - 1);
+        this.currentCard = filteredCards.get(iteration - 1);
 //        reset all card labels
         labelTopic.setText(currentCard.getTopic());
         labelTag.setText(currentCard.getTag());
@@ -112,22 +124,34 @@ public class RepeatSceneController {
 
     @FXML
     private void startRepetition() {
-        topicChoiceBox.setDisable(true);
-        tagChoiceBox.setDisable(true);
-        orientationChoiceBox.setDisable(true);
-        scoreChoiceBox.setDisable(true);
-        startButton.setDisable(true);
-        renderFlipCard();
-        flipWordCard.setVisible(true);
-        completionText.setText("");
-        flipWordCard.setOnMouseClicked(_ -> clickOnCard());
+        cardManager = new CardManager();
+        cards = cardManager.getCards();
+
+        FilterManager filterManager = new FilterManager(cards);
+        String topicChoiceBoxValue = (String) topicChoiceBox.getValue();
+        String tagChoiceBoxValue = (String) tagChoiceBox.getValue();
+        String scoreChoiceBoxValue = (String) scoreChoiceBox.getValue();
+
+        this.filteredCards = filterManager.filterCardList(topicChoiceBoxValue, tagChoiceBoxValue, scoreChoiceBoxValue);
+        if (this.filteredCards.isEmpty()) {
+            completionText.setText("No cards with specified parameters");
+        } else {
+            topicChoiceBox.setDisable(true);
+            tagChoiceBox.setDisable(true);
+            orientationChoiceBox.setDisable(true);
+            scoreChoiceBox.setDisable(true);
+            startButton.setDisable(true);
+            deleteButton.setVisible(true);
+            renderFlipCard();
+            flipWordCard.setVisible(true);
+            completionText.setText("");
+            flipWordCard.setOnMouseClicked(_ -> clickOnCard());
+        }
     }
 
     @FXML
     private void clickOnCard() {
         scoreBox.setVisible(true);
-
-        System.out.println("AHA");
 
         if (orientationChoiceBox.getValue().equals("normal")) {
             labelTranslation.setText(currentCard.getTranslation());
@@ -141,15 +165,63 @@ public class RepeatSceneController {
         String currentButtonValue = currentButton.getText();
         this.currentCard.setCurrentProficiencyScore(currentButtonValue);
 
-        System.out.println(this.currentCard.getCurrentProficiencyScore());
         cardManager.saveCards();
 
-        if (iteration == cards.size()) {
+        if (iteration == filteredCards.size()) {
             closeCard();
             completionText.setText("Well done! Click start to repeat words again");
+            System.out.println("Cards to delete:");
+            for (String id : cardsToDelete) {
+                System.out.println(id);
+            }
         } else {
             iteration++;
             renderFlipCard();
         }
+    }
+
+//    public void deleteCards(String id) {
+//        this.cards.stream().filter(card -> id.equals(card.getId()))
+//                .findFirst()
+//                .orElse(null);
+//        this.cards.removeIf(card -> card.getId().equals(id));
+//        System.out.println(id);
+//    }
+//
+//
+    public void clickOnDeleteButton() {
+        deleteButtonYes.setVisible(true);
+        deleteButtonNo.setVisible(true);
+        deleteButton.setManaged(false);
+        deleteButton.setVisible(false);
+    }
+
+    public void clickOnDeleteButtonYes() {
+        cardsToDelete.add(this.currentCard.getId());
+        if (iteration == filteredCards.size()) {
+            closeCard();
+            deleteButtonYes.setVisible(false);
+            deleteButtonNo.setVisible(false);
+            deleteButton.setVisible(false);
+            completionText.setText("Well done! Click start to repeat words again");
+            System.out.println("Cards to delete:");
+            for (String id : cardsToDelete) {
+                System.out.println(id);
+            }
+        } else {
+            deleteButtonYes.setVisible(false);
+            deleteButtonNo.setVisible(false);
+            deleteButton.setManaged(true);
+            deleteButton.setVisible(true);
+            iteration++;
+            renderFlipCard();
+        }
+    }
+
+    public void clickOnDeleteButtonNo() {
+        deleteButtonYes.setVisible(false);
+        deleteButtonNo.setVisible(false);
+        deleteButton.setManaged(true);
+        deleteButton.setVisible(true);
     }
 }

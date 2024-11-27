@@ -11,8 +11,6 @@ public class AddCardSceneController {
         this.model = model;
     }
 
-    CardManager cardManager = new CardManager();
-
     @FXML
     TextField inputTopic;
     @FXML
@@ -29,6 +27,7 @@ public class AddCardSceneController {
 
     @FXML
     private void addNewCard() {
+        CardManager cardManager = new CardManager();
         if (inputWord.getText().isBlank() || inputTranslation.getText().isBlank()) {
             return;
         }
