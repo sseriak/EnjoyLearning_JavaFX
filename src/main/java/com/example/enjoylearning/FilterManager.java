@@ -39,6 +39,14 @@ public class FilterManager {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public ArrayList<WordCard> searchWords(String topic, String word, String tag) {
+        return this.initialCardList.stream()
+                .filter(card -> "all".equals(topic) || topic == null || topic.equals(card.getTopic()))
+                .filter(card -> card.getWord().toLowerCase().contains(word.toLowerCase()))
+                .filter(card -> card.getTag().toLowerCase().contains(tag.toLowerCase()))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public ArrayList<String> getTopics() {
         return this.topics;
     }

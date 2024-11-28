@@ -44,17 +44,25 @@
          <Insets bottom="20.0" />
       </VBox.margin>
    </HBox>
+   <Label fx:id="completionText">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Label>
    <VBox fx:id="flipWordCard" alignment="TOP_CENTER" maxWidth="280.0" prefHeight="400.0" style="-fx-border-color: #000;" visible="false">
       <children>
          <HBox alignment="CENTER_LEFT" prefWidth="200.0">
             <children>
-               <Button fx:id="closeCardButton" mnemonicParsing="false" onAction="#closeCard" text="X">
+               <Button fx:id="closeCardButton" mnemonicParsing="false" onAction="#closeCard" style="-fx-border-color: #000;" text="X">
                   <HBox.margin>
                      <Insets right="20.0" />
                   </HBox.margin>
                </Button>
                <Label fx:id="labelTopic" />
             </children>
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
          </HBox>
          <Label fx:id="labelWord">
             <font>
@@ -72,16 +80,19 @@
          </Label>
          <Label fx:id="labelTag">
             <VBox.margin>
-               <Insets bottom="150.0" />
+               <Insets bottom="180.0" />
             </VBox.margin>
          </Label>
          <HBox fx:id="scoreBox" alignment="BOTTOM_CENTER" visible="false">
             <children>
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" text="Fail" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" text="Bad" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" text="Good" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" text="Great" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Fail" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Bad" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Good" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Great" />
             </children>
+            <VBox.margin>
+               <Insets left="-10.0" right="-10.0" />
+            </VBox.margin>
          </HBox>
       </children>
       <padding>
@@ -92,14 +103,9 @@
       </VBox.margin></VBox>
    <HBox alignment="CENTER" prefWidth="200.0">
       <children>
-         <Button fx:id="deleteButtonYes" mnemonicParsing="false" onAction="#clickOnDeleteButtonYes" text="Yes" textFill="#10e121" visible="false" />
-         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#clickOnDeleteButton" prefWidth="80.0" text="Delete card" textFill="RED" visible="false" />
-         <Button fx:id="deleteButtonNo" mnemonicParsing="false" onAction="#clickOnDeleteButtonNo" text="No" textFill="RED" visible="false" />
+         <Button fx:id="deleteButtonYes" mnemonicParsing="false" onAction="#clickOnDeleteButtonYes" text="Yes" textFill="#15bc20" visible="false" />
+         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#showDeleteButtonsGroup" prefWidth="80.0" text="Delete card" textFill="RED" visible="false" />
+         <Button fx:id="deleteButtonNo" mnemonicParsing="false" onAction="#hideDeleteButtonsGroup" text="No" textFill="RED" visible="false" />
       </children>
    </HBox>
-   <Label fx:id="completionText">
-      <font>
-         <Font size="30.0" />
-      </font>
-   </Label>
 </VBox>

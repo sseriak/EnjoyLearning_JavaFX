@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class WordCard {
-    private String word;
-    private String translation;
-    private String topic;
-    private String tag;
+    private final String word;
+    private final String translation;
+    private final String topic;
+    private final String tag;
     private String currentProficiencyScore;
     private final String id;
 

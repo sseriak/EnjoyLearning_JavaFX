@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.enjoylearning.SearchSceneController">
+<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.SearchSceneController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Button text="Back to main scene" onAction="#goToMain"/>
+   <HBox alignment="TOP_RIGHT" prefWidth="200.0">
+      <children>
+         <Label prefWidth="195.0" text="Type word" />
+         <Label prefWidth="195.0" text="Type #Tag" />
+         <Label prefWidth="150.0" text="Choose topic" />
+      </children>
+      <VBox.margin>
+         <Insets bottom="5.0" />
+      </VBox.margin>
+   </HBox>
+   <HBox prefWidth="200.0">
+      <children>
+      
+          <Button onAction="#goToMain" text="Close">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Button>
+         <TextField fx:id="wordInput" onKeyTyped="#onInput" prefWidth="195.0" />
+         <TextField fx:id="tagInput" onKeyTyped="#onInput" prefWidth="195.0" />
+         <ChoiceBox fx:id="topicChoiceBox" value="all" prefWidth="93.0">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin></ChoiceBox>
+         <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
+      </children>
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin>
+   </HBox>
+   <VBox fx:id="wordTableContainer" prefHeight="200.0" prefWidth="100.0" />
 </VBox>

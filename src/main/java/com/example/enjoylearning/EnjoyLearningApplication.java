@@ -48,7 +48,16 @@ public class EnjoyLearningApplication extends Application {
         Scene scene = new Scene(viewFromModel(model.getCurrentView()), 640, 640);
 
         // change view when model property changes:
-        model.currentViewProperty().addListener((_, _, newView) -> scene.setRoot(viewFromModel(newView)));
+        model.currentViewProperty().addListener((_, _, newView) -> {
+            if (newView == Model.View.REPEAT) controllerRepeat.updateChoiceBoxes();
+            if (newView == Model.View.SEARCH) {
+                controllerSearch.updateCardList();
+                controllerSearch.updateChoiceBox();
+                controllerSearch.renderTable();
+            }
+
+            scene.setRoot(viewFromModel(newView));
+        });
 
         stage.setTitle("Enjoy learning!");
         stage.setScene(scene);
