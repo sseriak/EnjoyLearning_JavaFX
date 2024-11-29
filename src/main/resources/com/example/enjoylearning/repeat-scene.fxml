@@ -7,16 +7,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
+<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" stylesheets="@repeat-scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.RepeatSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <HBox alignment="CENTER" prefWidth="200.0">
       <children>
-         <Label alignment="CENTER" contentDisplay="TOP" prefWidth="120.0" text="Choose Topic:" />
-         <Label alignment="CENTER" prefWidth="120.0" text="Choose Tag:" textAlignment="CENTER" />
-         <Label alignment="CENTER" prefWidth="120.0" text="Choose Score:" textAlignment="CENTER" />
-         <Label alignment="CENTER" prefWidth="120.0" text="Choose Orientation:" textAlignment="CENTER" />
+         <Label alignment="CENTER" contentDisplay="TOP" prefWidth="120.0" styleClass="label--small" text="Choose Topic:">
+            <font>
+               <Font size="10.0" />
+            </font></Label>
+         <Label alignment="CENTER" prefWidth="120.0" styleClass="label--small" text="Choose Tag:" textAlignment="CENTER">
+            <font>
+               <Font size="10.0" />
+            </font></Label>
+         <Label alignment="CENTER" prefWidth="120.0" styleClass="label--small" text="Choose Score:" textAlignment="CENTER">
+            <font>
+               <Font size="10.0" />
+            </font></Label>
+         <Label alignment="CENTER" prefWidth="120.0" styleClass="label--small" text="Choose Orientation:" textAlignment="CENTER">
+            <font>
+               <Font size="10.0" />
+            </font></Label>
       </children>
       <VBox.margin>
          <Insets bottom="5.0" />
@@ -25,26 +37,41 @@
    <HBox alignment="TOP_CENTER" prefWidth="200.0">
       <children>
       
-          <Button onAction="#goToMain" text="Close" />
-         <ChoiceBox fx:id="topicChoiceBox" prefWidth="120.0" value="all" />
-         <ChoiceBox fx:id="tagChoiceBox" prefWidth="120.0" value="all" />
-         <ChoiceBox fx:id="scoreChoiceBox" prefWidth="120.0" value="all" />
-         <ChoiceBox fx:id="orientationChoiceBox" prefWidth="120.0" value="normal">
+          <Button onAction="#goToMain" prefHeight="30.0" styleClass="button--red" text="Close">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></Button>
+         <ChoiceBox fx:id="topicChoiceBox" onMouseClicked="#clearCompletionText" prefHeight="30.0" prefWidth="120.0" styleClass="custom-text-field" value="all">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></ChoiceBox>
+         <ChoiceBox fx:id="tagChoiceBox" onMouseClicked="#clearCompletionText" prefHeight="30.0" prefWidth="120.0" styleClass="custom-text-field" value="all">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></ChoiceBox>
+         <ChoiceBox fx:id="scoreChoiceBox" onMouseClicked="#clearCompletionText" prefHeight="30.0" prefWidth="120.0" styleClass="custom-text-field" value="all">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></ChoiceBox>
+         <ChoiceBox fx:id="orientationChoiceBox" onMouseClicked="#clearCompletionText" prefHeight="30.0" prefWidth="120.0" styleClass="custom-text-field" value="normal">
             <items>
                <FXCollections fx:factory="observableArrayList">
                   <String fx:value="normal" />
                   <String fx:value="reverse" />
                </FXCollections>
             </items>
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin>
          </ChoiceBox>
 
-         <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRepetition" text="Start" />
+         <Button fx:id="startButton" mnemonicParsing="false" onAction="#startRepetition" prefHeight="30.0" styleClass="button--green" text="Start" />
       </children>
       <VBox.margin>
          <Insets bottom="20.0" />
       </VBox.margin>
    </HBox>
-   <Label fx:id="completionText">
+   <Label fx:id="completionText" styleClass="label--big">
       <font>
          <Font size="30.0" />
       </font>
@@ -53,26 +80,29 @@
       <children>
          <HBox alignment="CENTER_LEFT" prefWidth="200.0">
             <children>
-               <Button fx:id="closeCardButton" mnemonicParsing="false" onAction="#closeCard" style="-fx-border-color: #000;" text="X">
+               <Button fx:id="closeCardButton" mnemonicParsing="false" onAction="#closeCard" style="-fx-border-color: #000;" styleClass="button--close, button--red" text="X">
                   <HBox.margin>
                      <Insets right="20.0" />
                   </HBox.margin>
                </Button>
-               <Label fx:id="labelTopic" />
+               <Label fx:id="labelTopic" alignment="CENTER" prefWidth="160.0" textAlignment="CENTER" />
             </children>
             <VBox.margin>
-               <Insets bottom="20.0" />
+               <Insets bottom="50.0" />
             </VBox.margin>
+            <padding>
+               <Insets right="30.0" />
+            </padding>
          </HBox>
-         <Label fx:id="labelWord">
+         <Label fx:id="labelWord" styleClass="label--middle">
             <font>
                <Font size="20.0" />
             </font>
          </Label>
          <Label text="-----------------------------" />
-         <Label fx:id="labelTranslation">
+         <Label fx:id="labelTranslation" styleClass="label--middle">
             <VBox.margin>
-               <Insets bottom="50.0" />
+               <Insets bottom="100.0" />
             </VBox.margin>
             <font>
                <Font size="20.0" />
@@ -80,15 +110,15 @@
          </Label>
          <Label fx:id="labelTag">
             <VBox.margin>
-               <Insets bottom="180.0" />
+               <Insets bottom="100.0" />
             </VBox.margin>
          </Label>
-         <HBox fx:id="scoreBox" alignment="BOTTOM_CENTER" visible="false">
+         <HBox fx:id="scoreBox" alignment="BOTTOM_CENTER" styleClass="score-button-group" visible="false">
             <children>
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Fail" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Bad" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Good" />
-               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" text="Great" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" styleClass="score-button, button--red" text="Fail" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" styleClass="score-button, button--red-light" text="Bad" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" styleClass="score-button, button--green-light" text="Good" />
+               <Button mnemonicParsing="false" onAction="#clickOnScoreButton" prefWidth="70.0" styleClass="score-button--last, button--green" text="Great" />
             </children>
             <VBox.margin>
                <Insets left="-10.0" right="-10.0" />
@@ -103,9 +133,9 @@
       </VBox.margin></VBox>
    <HBox alignment="CENTER" prefWidth="200.0">
       <children>
-         <Button fx:id="deleteButtonYes" mnemonicParsing="false" onAction="#clickOnDeleteButtonYes" text="Yes" textFill="#15bc20" visible="false" />
-         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#showDeleteButtonsGroup" prefWidth="80.0" text="Delete card" textFill="RED" visible="false" />
-         <Button fx:id="deleteButtonNo" mnemonicParsing="false" onAction="#hideDeleteButtonsGroup" text="No" textFill="RED" visible="false" />
+         <Button fx:id="deleteButtonYes" mnemonicParsing="false" onAction="#clickOnDeleteButtonYes" styleClass="delete-button-confirmation, button--green" text="Yes" textFill="#15bc20" visible="false" />
+         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#showDeleteButtonsGroup" prefWidth="80.0" styleClass="delete-button, button--red" text="Delete card" textFill="RED" visible="false" />
+         <Button fx:id="deleteButtonNo" mnemonicParsing="false" onAction="#hideDeleteButtonsGroup" styleClass="delete-button-confirmation, delete-button-confirmation--no, button--red" text="No" textFill="RED" visible="false" />
       </children>
    </HBox>
 </VBox>

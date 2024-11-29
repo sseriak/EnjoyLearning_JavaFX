@@ -4,15 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.SearchSceneController">
+<VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="640.0" stylesheets="@search-scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.SearchSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <HBox alignment="TOP_RIGHT" prefWidth="200.0">
       <children>
-         <Label prefWidth="195.0" text="Type word" />
-         <Label prefWidth="195.0" text="Type #Tag" />
-         <Label prefWidth="150.0" text="Choose topic" />
+         <Label prefWidth="195.0" text="Type word" styleClass="label--small"/>
+         <Label prefWidth="195.0" text="Type #Tag" styleClass="label--small"/>
+         <Label prefWidth="150.0" text="Choose topic" styleClass="label--small"/>
       </children>
       <VBox.margin>
          <Insets bottom="5.0" />
@@ -21,18 +21,24 @@
    <HBox prefWidth="200.0">
       <children>
       
-          <Button onAction="#goToMain" text="Close">
+          <Button onAction="#goToMain" text="Close" styleClass="button--red">
             <HBox.margin>
                <Insets right="10.0" />
             </HBox.margin>
          </Button>
-         <TextField fx:id="wordInput" onKeyTyped="#onInput" prefWidth="195.0" />
-         <TextField fx:id="tagInput" onKeyTyped="#onInput" prefWidth="195.0" />
-         <ChoiceBox fx:id="topicChoiceBox" value="all" prefWidth="93.0">
+         <TextField fx:id="wordInput" onKeyTyped="#onInput" prefWidth="195.0" promptText="Word" styleClass="custom-text-field, custom-text-field--type">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></TextField>
+         <TextField fx:id="tagInput" onKeyTyped="#onInput" prefWidth="195.0" promptText="Tag" styleClass="custom-text-field, custom-text-field--type">
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin></TextField>
+         <ChoiceBox fx:id="topicChoiceBox" prefWidth="93.0" value="all" styleClass="custom-text-field">
             <HBox.margin>
                <Insets right="10.0" />
             </HBox.margin></ChoiceBox>
-         <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
+         <Button mnemonicParsing="false" onAction="#reset" text="Reset" styleClass="button--green"/>
       </children>
       <VBox.margin>
          <Insets bottom="20.0" />

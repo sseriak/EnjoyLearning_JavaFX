@@ -210,4 +210,8 @@ public class RepeatSceneController {
         cardsToDelete.add(this.currentCard.getId());
         renderNextCard();
     }
+
+    public void clearCompletionText() {
+        if (!completionText.getText().isEmpty()) completionText.setText("");
+    }
 }

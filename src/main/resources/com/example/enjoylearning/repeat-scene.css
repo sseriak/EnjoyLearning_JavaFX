@@ -1,0 +1,96 @@
+.root {
+    -fx-font-family: "Menlo";
+}
+
+.button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: black;
+    -fx-border-radius: none;
+    -fx-border-color: black;
+    -fx-border-background: none;
+    -fx-font-size: 11px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 50px;
+}
+
+.custom-text-field {
+    -fx-border: none;
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1px 1px;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-font-size: 11px;
+}
+
+.button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.custom-text-field:hover {
+    -fx-background-color: #FFF;
+    -fx-cursor: hand;
+}
+
+.label--small {
+    -fx-font-size: 10px;
+}
+
+.label--middle {
+    -fx-font-family: "Menlo";
+    -fx-font-size: 20px;
+}
+
+.label--big {
+    -fx-font-size: 20px;
+}
+
+.button--close {
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+}
+
+.score-button-group {
+    -fx-border: none;
+    -fx-background-color: transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-border-color: black transparent transparent transparent;
+}
+
+.score-button {
+    -fx-border-radius: none;
+    -fx-border-width: 0 1px 0 0;
+    -fx-border-color: transparent black transparent transparent;
+}
+
+.score-button--last {
+    -fx-border-radius: none;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: transparent transparent transparent transparent;
+}
+
+.delete-button {
+    -fx-min-width: 100px;
+}
+
+.delete-button-confirmation--no {
+    -fx-border-width: 1px 1px 1px 0;
+    -fx-border-color: black black black transparent;
+}
+
+.button--red:hover {
+    -fx-background-color: #ebc0c0;
+}
+
+.button--green:hover {
+    -fx-background-color: #c3dec4;
+}
+
+.button--red-light:hover {
+    -fx-background-color: #f0ddd3;
+}
+
+.button--green-light:hover {
+    -fx-background-color: #e9f0d3;
+}
+
+

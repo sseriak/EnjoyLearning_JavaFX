@@ -1,0 +1,37 @@
+.root {
+    -fx-font-family: "Menlo";
+}
+
+.button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: black;
+    -fx-border-radius: none;
+    -fx-border-color: black;
+    -fx-border-background: none;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 50px;
+}
+
+
+.button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.button--big {
+    -fx-font-size: 18px;
+    -fx-min-width: 225px;
+}
+
+.button--wide {
+    -fx-min-width: 75px;
+}
+
+.button--red:hover {
+    -fx-background-color: #ebc0c0;
+}
+
+.button--green:hover {
+    -fx-background-color: #c3dec4;
+}

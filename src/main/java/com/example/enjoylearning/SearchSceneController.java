@@ -50,7 +50,7 @@ public class SearchSceneController {
         topicChoiceBox.setItems(uniqueTopics);
         topicChoiceBox.setValue("all");
 
-        topicChoiceBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+        topicChoiceBox.valueProperty().addListener((_, _, _) -> {
             onInput();
         });
     }

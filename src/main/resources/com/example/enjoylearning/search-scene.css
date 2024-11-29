@@ -1,0 +1,46 @@
+.root {
+    -fx-font-family: "Menlo";
+}
+
+.button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: black;
+    -fx-border-radius: none;
+    -fx-border-color: black;
+    -fx-border-background: none;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 50px;
+}
+
+.button--red:hover {
+    -fx-background-color: #ebc0c0;
+}
+
+.button--green:hover {
+    -fx-background-color: #c3dec4;
+}
+
+.custom-text-field {
+    -fx-border: none;
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1px 1px;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-font-size: 11px;
+    -fx-min-height: 27px;
+}
+
+.custom-text-field:hover {
+    -fx-background-color: #FFF;
+    -fx-cursor: hand;
+}
+
+.custom-text-field--type:hover {
+    -fx-background-color: #FFF;
+    -fx-cursor: text;
+}
+
+.label--small {
+    -fx-font-size: 10px;
+}
