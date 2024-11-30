@@ -5,20 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.enjoylearning.MainSceneController" stylesheets="@main-scene.css">
+<VBox alignment="CENTER" spacing="20.0" stylesheets="@css/main-scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.MainSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Button onAction="#goToAddCard" text="Add new card" styleClass="button--big, button--green">
+    <Button onAction="#goToAddCard" styleClass="button--big, button--green" text="Add new card">
       <font>
          <Font size="20.0" />
       </font></Button>
    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-          <Button onAction="#goToRepeat" text="Repeat" styleClass="button--wide, button--green"/>
-          <Button onAction="#goToPairs" text="Find pair" styleClass="button--wide, button--green"/>
-          <Button onAction="#goToSearch" text="Search" styleClass="button--wide, button--green"/>
+          <Button onAction="#goToRepeat" styleClass="button--wide, button--green" text="Repeat">
+            <HBox.margin>
+               <Insets right="50.0" />
+            </HBox.margin></Button>
+          <Button onAction="#goToSearch" styleClass="button--wide, button--green" text="Search" />
       </children>
    </HBox>
 </VBox>

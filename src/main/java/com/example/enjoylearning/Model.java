@@ -4,7 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class Model {
-    public enum View { MAIN, ADD, REPEAT, PAIRS, SEARCH }
+    public enum View { MAIN, ADD, REPEAT, SEARCH }
 
     private final ObjectProperty<View> currentView = new SimpleObjectProperty<>(View.MAIN);
 

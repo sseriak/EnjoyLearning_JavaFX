@@ -36,3 +36,8 @@
 .custom-text-field--light:hover {
     -fx-background-color: #FFF;
 }
+
+.error-message {
+    -fx-font-size: 10px;
+    -fx-text-fill: #f23f3f;
+}

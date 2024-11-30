@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" stylesheets="@add-card-scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.AddCardSceneController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" stylesheets="@css/add-card-scene.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.enjoylearning.AddCardSceneController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -12,11 +12,11 @@
       <children>
          <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="600.0">
             <children>
-               <Button mnemonicParsing="false" onAction="#goToMain" text="Close" styleClass="button--red">
+               <Button mnemonicParsing="false" onAction="#goToMain" styleClass="button--red" text="Close">
                   <HBox.margin>
                      <Insets right="215.0" />
                   </HBox.margin></Button>
-               <Button mnemonicParsing="false" onAction="#addNewCard" text="Save" styleClass="button--green"/>
+               <Button mnemonicParsing="false" onAction="#addNewCard" styleClass="button--green" text="Save" />
             </children>
             <VBox.margin>
                <Insets bottom="50.0" />
@@ -26,13 +26,21 @@
             <VBox.margin>
                <Insets bottom="50.0" />
             </VBox.margin></TextField>
-         <TextField fx:id="inputWord" promptText="Word" styleClass="custom-text-field, custom-text-field--light">
+         <Label fx:id="errorMessageWord" styleClass="error-message" text="The field must not be empty" visible="false">
+            <VBox.margin>
+               <Insets bottom="2.0" />
+            </VBox.margin></Label>
+         <TextField fx:id="inputWord" onKeyTyped="#removeWordError" promptText="Word" styleClass="custom-text-field, custom-text-field--light">
             <VBox.margin>
                <Insets bottom="5.0" />
             </VBox.margin></TextField>
-         <TextField fx:id="inputTranslation" promptText="Translation" styleClass="custom-text-field, custom-text-field--light">
+         <Label fx:id="errorMessageTranslation" styleClass="error-message" text="The field must not be empty" visible="false">
             <VBox.margin>
-               <Insets bottom="50.0" />
+               <Insets bottom="2.0" />
+            </VBox.margin></Label>
+         <TextField fx:id="inputTranslation" onKeyTyped="#removeTranslationError" promptText="Translation" styleClass="custom-text-field, custom-text-field--light">
+            <VBox.margin>
+               <Insets bottom="70.0" />
             </VBox.margin></TextField>
          <TextField fx:id="inputTag" promptText="#Tag" styleClass="custom-text-field, custom-text-field--light" />
       </children>

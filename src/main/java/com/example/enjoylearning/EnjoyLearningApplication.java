@@ -11,7 +11,6 @@ public class EnjoyLearningApplication extends Application {
     private Parent viewMain;
     private Parent viewAdd;
     private Parent viewRepeat;
-    private Parent viewPairs;
     private Parent viewSearch;
 
     @Override
@@ -33,11 +32,6 @@ public class EnjoyLearningApplication extends Application {
         RepeatSceneController controllerRepeat = loaderRepeat.getController();
         controllerRepeat.setModel(model);
         controllerRepeat.updateChoiceBoxes();
-
-        FXMLLoader loaderPairs = new FXMLLoader(EnjoyLearningApplication.class.getResource("pairs-scene.fxml"));
-        viewPairs = loaderPairs.load();
-        PairsSceneController controllerPairs = loaderPairs.getController();
-        controllerPairs.setModel(model);
 
         FXMLLoader loaderSearch = new FXMLLoader(EnjoyLearningApplication.class.getResource("search-scene.fxml"));
         viewSearch = loaderSearch.load();
@@ -76,7 +70,6 @@ public class EnjoyLearningApplication extends Application {
             case MAIN -> viewMain;
             case ADD -> viewAdd;
             case REPEAT -> viewRepeat;
-            case PAIRS -> viewPairs;
             case SEARCH -> viewSearch;
         };
     }

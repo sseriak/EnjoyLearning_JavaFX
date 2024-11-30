@@ -19,11 +19,6 @@ public class MainSceneController {
     }
 
     @FXML
-    private void goToPairs() {
-        model.setCurrentView(Model.View.PAIRS);
-    }
-
-    @FXML
     private void goToSearch() {
         model.setCurrentView(Model.View.SEARCH);
     }

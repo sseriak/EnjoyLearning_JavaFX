@@ -1,6 +1,7 @@
 package com.example.enjoylearning;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class AddCardSceneController {
     TextField inputTranslation;
     @FXML
     TextField inputTag;
+    @FXML
+    Label errorMessageWord;
+    @FXML
+    Label errorMessageTranslation;
 
     @FXML
     private void goToMain() {
@@ -28,22 +33,47 @@ public class AddCardSceneController {
     @FXML
     private void addNewCard() {
         CardManager cardManager = new CardManager();
-        if (inputWord.getText().isBlank() || inputTranslation.getText().isBlank()) {
-            return;
-        }
+        removeWordError();
+        removeTranslationError();
+        if (!isValidated()) return;
         cardManager.addCard(new WordCard(inputWord.getText(), inputTranslation.getText(), inputTopic.getText(), inputTag.getText()));
         cardManager.saveCards();
         System.out.println("New card has been added");
-        ArrayList<WordCard> cards = cardManager.getCards();
         inputTopic.setText("");
         inputWord.setText("");
         inputTranslation.setText("");
         inputTag.setText("");
-
-//        for (WordCard card : cards) {
-//            System.out.println(card.getWord() + " " + card.getTranslation());
-//        }
-//        System.out.println(cardManager.getCards());
     }
 
+    private void addError(Label errorMessage, TextField errorField) {
+        errorMessage.setVisible(true);
+        errorField.setStyle("-fx-border-color: transparent transparent #f23f3f transparent;");
+    }
+
+    @FXML
+    public void removeWordError() {
+        errorMessageWord.setVisible(false);
+        inputWord.setStyle("-fx-border-color: transparent transparent black transparent;");
+    }
+
+    @FXML
+    public void removeTranslationError() {
+        errorMessageTranslation.setVisible(false);
+        inputTranslation.setStyle("-fx-border-color: transparent transparent black transparent;");
+    }
+
+    private boolean isValidated() {
+        boolean isValidated = true;
+        if (inputWord.getText().isBlank()) {
+            addError(errorMessageWord, inputWord);
+            isValidated = false;
+        }
+
+        if (inputTranslation.getText().isBlank()) {
+            addError(errorMessageTranslation, inputTranslation);
+            isValidated = false;
+        }
+
+        return isValidated;
+    }
 }
