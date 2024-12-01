@@ -67,8 +67,8 @@ public class SearchSceneController {
         TableColumn<WordCard, String> translationColumn = new TableColumn<>("Translation");
         translationColumn.setCellValueFactory(new PropertyValueFactory<>("translation"));
 
-        TableColumn<WordCard, String> tagColumn = new TableColumn<>("Tag");
-        tagColumn.setCellValueFactory(new PropertyValueFactory<>("tag"));
+        TableColumn<WordCard, String> tagColumn = new TableColumn<>("Tags");
+        tagColumn.setCellValueFactory(new PropertyValueFactory<>("concatenatedTags"));
 
         wordTable.getColumns().add(topicColumn);
         wordTable.getColumns().add(wordColumn);

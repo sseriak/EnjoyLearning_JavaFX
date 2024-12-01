@@ -46,6 +46,8 @@ public class RepeatSceneController {
     Label labelTag;
     @FXML
     Label completionText;
+    @FXML
+    Label confirmation;
 
     @FXML
     HBox scoreBox;
@@ -87,11 +89,13 @@ public class RepeatSceneController {
         model.setCurrentView(Model.View.MAIN);
     }
 
+
+
     public void renderFlipCard() {
         this.currentCard = filteredCards.get(iteration - 1);
 //        reset all card labels
         labelTopic.setText(currentCard.getTopic());
-        labelTag.setText(currentCard.getTag());
+        labelTag.setText(currentCard.getConcatenatedTags());
         labelWord.setText("");
         labelTranslation.setText("");
         scoreBox.setVisible(false);
@@ -193,6 +197,7 @@ public class RepeatSceneController {
     }
 
     public void showDeleteButtonsGroup() {
+        confirmation.setVisible(true);
         deleteButtonYes.setVisible(true);
         deleteButtonNo.setVisible(true);
         deleteButton.setManaged(false);
@@ -200,6 +205,7 @@ public class RepeatSceneController {
     }
 
     public void hideDeleteButtonsGroup() {
+        confirmation.setVisible(false);
         deleteButtonYes.setVisible(false);
         deleteButtonNo.setVisible(false);
         deleteButton.setManaged(true);

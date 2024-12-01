@@ -131,6 +131,10 @@
       <VBox.margin>
          <Insets bottom="5.0" />
       </VBox.margin></VBox>
+   <Label fx:id="confirmation" styleClass="confirmation-message" text="Are you sure?" visible="false">
+      <VBox.margin>
+         <Insets bottom="2.0" />
+      </VBox.margin></Label>
    <HBox alignment="CENTER" prefWidth="200.0">
       <children>
          <Button fx:id="deleteButtonYes" mnemonicParsing="false" onAction="#clickOnDeleteButtonYes" styleClass="delete-button-confirmation, button--green" text="Yes" textFill="#15bc20" visible="false" />

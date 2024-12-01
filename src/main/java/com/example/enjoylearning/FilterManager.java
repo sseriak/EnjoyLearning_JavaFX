@@ -1,13 +1,14 @@
 package com.example.enjoylearning;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FilterManager {
     private final ArrayList<WordCard> initialCardList;
-    private ArrayList<String> topics;
-    private ArrayList<String> tags;
-    private ArrayList<String> scores;
+    private final ArrayList<String> topics;
+    private final ArrayList<String> tags;
+    private final ArrayList<String> scores;
 
     public FilterManager(ArrayList<WordCard> cardList) {
         this.initialCardList = cardList;
@@ -18,8 +19,9 @@ public class FilterManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         this.topics.addFirst("all");
         this.tags = this.initialCardList.stream()
-                .map(WordCard::getTag)
-                .filter(tag -> tag != null && !tag.isEmpty())
+                .map(WordCard::getTags)
+                .filter(tags -> tags != null && !tags.isEmpty())
+                .flatMap(List::stream)
                 .distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
         this.tags.addFirst("all");
@@ -34,7 +36,12 @@ public class FilterManager {
     public ArrayList<WordCard> filterCardList(String topic, String tag, String score) {
         return this.initialCardList.stream()
                 .filter(card -> "all".equals(topic) || topic.equals(card.getTopic()))
-                .filter(card -> "all".equals(tag) || tag.equals(card.getTag()))
+                .filter(card -> {
+                    if (tag == null || tag.isBlank() || "all".equals(tag)) return true;
+                    List<String> tags = card.getTags();
+                    return tags != null && tags.stream()
+                            .anyMatch(t -> t.toLowerCase().contains(tag.toLowerCase()));
+                })
                 .filter(card -> "all".equals(score) || score.equals(card.getCurrentProficiencyScore()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
@@ -43,7 +50,12 @@ public class FilterManager {
         return this.initialCardList.stream()
                 .filter(card -> "all".equals(topic) || topic == null || topic.equals(card.getTopic()))
                 .filter(card -> card.getWord().toLowerCase().contains(word.toLowerCase()))
-                .filter(card -> card.getTag().toLowerCase().contains(tag.toLowerCase()))
+                .filter(card -> {
+                    if (tag == null || tag.isBlank()  || "all".equals(tag)) return true;
+                    List<String> tags = card.getTags();
+                    return tags != null && tags.stream()
+                            .anyMatch(t -> t.toLowerCase().contains(tag.toLowerCase()));
+                })
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

@@ -1,21 +1,22 @@
 package com.example.enjoylearning;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class WordCard {
     private final String word;
     private final String translation;
     private final String topic;
-    private final String tag;
+    private final ArrayList<String> tags;
     private String currentProficiencyScore;
     private final String id;
 
-    public WordCard(String word, String translation, String topic, String tag) {
+    public WordCard(String word, String translation, String topic, ArrayList<String> tags) {
         this.word = word;
         this.translation = translation;
         this.topic = topic;
-        this.tag = tag;
+        this.tags = tags;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -23,8 +24,26 @@ public class WordCard {
         return topic;
     }
 
-    public String getTag() {
-        return tag;
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public String getConcatenatedTags() {
+        String resultString;
+
+        if (tags == null) {
+            resultString = "";
+        } else {
+            StringBuilder result = new StringBuilder();
+            for (String tag : this.tags) {
+                result.append(tag);
+                result.append(" ");
+            }
+            resultString = result.toString();
+
+        }
+
+        return resultString;
     }
 
     public String getId() {

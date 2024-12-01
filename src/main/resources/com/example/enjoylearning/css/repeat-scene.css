@@ -93,4 +93,9 @@
     -fx-background-color: #e9f0d3;
 }
 
+.confirmation-message {
+    -fx-font-size: 10px;
+    -fx-text-fill: #f23f3f;
+}
+
 
