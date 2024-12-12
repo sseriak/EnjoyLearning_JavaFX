@@ -44,3 +44,7 @@
 .label--small {
     -fx-font-size: 10px;
 }
+
+.table-row-cell {
+    -fx-font-size: 12px;
+}

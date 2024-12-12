@@ -1,6 +1,5 @@
 package com.example.enjoylearning;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -40,9 +39,7 @@ public class WordCard {
                 result.append(" ");
             }
             resultString = result.toString();
-
         }
-
         return resultString;
     }
 

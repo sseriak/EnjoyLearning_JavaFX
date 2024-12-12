@@ -1,7 +1,6 @@
 package com.example.enjoylearning;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 

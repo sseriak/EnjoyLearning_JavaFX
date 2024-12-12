@@ -53,14 +53,9 @@ public class EnjoyLearningApplication extends Application {
             scene.setRoot(viewFromModel(newView));
         });
 
+        stage.setResizable(false);
         stage.setTitle("Enjoy learning!");
         stage.setScene(scene);
-
-// prevent default exit, save cards before and then close window
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            stage.close();
-        });
 
         stage.show();
     }
