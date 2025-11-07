@@ -53,7 +53,15 @@ JavaFX SDK 17+
 Maven
 
 
-(Screenshots will be added soon)
+Screenshots
+![Main View](screenshots/EnjoyLearning_Main.png)
+![Add card](screenshots/EnjoyLearning_Add-card.png)
+![Add card validation](screenshots/EnjoyLearning_Add-card_Validation.png)
+![Add card save](screenshots/EnjoyLearning_Add-card_Save.png)
+![Repeat](screenshots/EnjoyLearning_Repeat.png)
+![Repeat score](screenshots/EnjoyLearning_Repeat_Score.png)
+![Search](screenshots/EnjoyLearning_Search.png)
+![Search filter](screenshots/EnjoyLearning_Search_Filter.png)
 
 
 Future Improvements
