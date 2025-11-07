@@ -43,7 +43,7 @@ FXML
 Maven
 
 Installation & Running
-bash# Clone the repository
+Clone the repository
 git clone https://lv-gitlab.intern.th-ab.de/s240797/enjoylearning.git
 
 run application - EnjoyLearningApplication - entry point 
